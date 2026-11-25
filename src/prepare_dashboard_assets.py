@@ -3,16 +3,13 @@ import sys
 sys.path.insert(0, "src")
 import joblib
 import pandas as pd
-from features_reco import PRODUCT_NAMES, PRODUCTS
+from features_reco import PRODUCTS, pretty_feature
 
 for name, path in [("s1", "models/stage1_propensity.pkl"), ("s2", "models/stage2_product.pkl")]:
     b = joblib.load(path)
     imp = pd.DataFrame({"feature": b["features"],
                         "gain": b["model"].booster_.feature_importance("gain")})
-    imp["pretty"] = imp["feature"].apply(
-        lambda f: PRODUCT_NAMES.get(f.replace("own_", "").replace("lag_", ""), f)
-        + (" (held)" if f.startswith("own_") else
-           " (held, prior month)" if f.startswith("lag_") else ""))
+    imp["pretty"] = imp["feature"].apply(pretty_feature)
     imp.sort_values("gain", ascending=False).head(25).to_csv(
         f"reports/feature_importance_{name}.csv", index=False)
 
@@ -25,6 +22,7 @@ sample = pd.concat([va[va.y_any == 1].sample(150, random_state=1),
     .sample(frac=1, random_state=2).reset_index(drop=True)
 sample.to_parquet("data/sample_customers.parquet", index=False)
 
+from features_reco import PRODUCT_NAMES
 acq = pd.Series(va[ycols].sum().to_numpy(), index=PRODUCTS).sort_values(ascending=False)
 pd.DataFrame({"product_code": acq.index,
               "product": [PRODUCT_NAMES[p] for p in acq.index],

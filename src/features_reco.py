@@ -140,3 +140,39 @@ def feature_columns() -> list[str]:
             + [f"lag_{p}" for p in PRODUCTS]
             + ["n_products", "n_products_lag", "added_last_month",
                "dropped_last_month", "is_new_customer"])
+
+
+# Plain-English names for the non-product features, so charts never show a raw
+# Spanish column code.
+FEATURE_NAMES = {
+    "age": "Age",
+    "antiguedad": "Tenure with bank (months)",
+    "renta": "Household income",
+    "ind_nuevo": "New customer flag",
+    "ind_actividad_cliente": "Activity flag",
+    "indrel": "Primary customer flag",
+    "indrel_1mes": "Customer type (month start)",
+    "tiprel_1mes": "Relationship type",
+    "cod_prov": "Province code",
+    "nomprov": "Province",
+    "ind_empleado": "Employee status",
+    "sexo": "Sex",
+    "indresi": "Residence flag",
+    "indext": "Foreigner flag",
+    "indfall": "Deceased flag",
+    "canal_entrada": "Acquisition channel",
+    "n_products": "Products held",
+    "n_products_lag": "Products held (prior month)",
+    "added_last_month": "Products added last month",
+    "dropped_last_month": "Products dropped last month",
+    "is_new_customer": "No history last month",
+}
+
+
+def pretty_feature(f: str) -> str:
+    """Render any model feature name for display."""
+    if f.startswith("own_"):
+        return f"{PRODUCT_NAMES.get(f[4:], f[4:])} (held)"
+    if f.startswith("lag_"):
+        return f"{PRODUCT_NAMES.get(f[4:], f[4:])} (held, prior month)"
+    return FEATURE_NAMES.get(f, f)
