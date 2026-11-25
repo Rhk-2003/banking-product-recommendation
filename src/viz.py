@@ -18,6 +18,9 @@ SERIES_1 = "#257de0"
 SERIES_2 = "#f47230"
 SERIES_3 = "#00b894"
 
+# sequential blue ramp (light -> dark), for magnitude shading in tables
+SEQUENTIAL_BLUE = ["#cce3fd", "#9dc8f7", "#6aabf1", "#338ced", "#2370cd", "#1757ac"]
+
 # ordinal ramp, lowest value tier -> highest
 SEGMENT_RAMP = ["#84b9f3", "#519ced", "#2370cd", "#0f4a96"]
 
@@ -74,3 +77,25 @@ def hbar(y, x, title: str, xtitle: str, color=SERIES_1, texts=None, height=None)
                      range=[0, xmax * 1.18])
     fig.update_yaxes(showgrid=False, autorange="reversed")
     return style(fig, height=height or max(240, 34 * len(list(y)) + 90), showlegend=False)
+
+
+def blue_gradient_styles(values) -> list:
+    """
+    Background shading for a numeric table column, as CSS strings.
+
+    Deliberately not pandas' Styler.background_gradient: that routes through
+    matplotlib colormaps, which drags a ~50 MB plotting dependency into the
+    deployment for the sake of six background colours (and crashes with
+    ModuleNotFoundError if matplotlib is absent). This walks the same validated
+    sequential blue ramp used by the charts, with no extra dependency.
+    """
+    v = [float(x) for x in values]
+    lo, hi = (min(v), max(v)) if v else (0.0, 0.0)
+    rng = hi - lo
+    styles = []
+    for x in v:
+        t = 0.0 if rng <= 0 else (x - lo) / rng
+        i = min(int(t * len(SEQUENTIAL_BLUE)), len(SEQUENTIAL_BLUE) - 1)
+        fg = "#ffffff" if i >= 3 else TEXT_PRIMARY
+        styles.append(f"background-color: {SEQUENTIAL_BLUE[i]}; color: {fg};")
+    return styles

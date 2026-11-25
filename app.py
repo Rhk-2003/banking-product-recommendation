@@ -395,7 +395,7 @@ elif PAGE == "Sales worklist":
     st.dataframe(
         work.style.format({"Age": "{:.0f}", "Tenure (mo)": "{:.0f}",
                            "P(buys next month)": "{:.2%}", "Product confidence": "{:.1%}"})
-        .background_gradient(subset=["P(buys next month)"], cmap="Blues"),
+        .apply(lambda col: viz.blue_gradient_styles(col), subset=["P(buys next month)"]),
         width="stretch", height=460)
     st.download_button("Download worklist as CSV", work.to_csv(index=False).encode(),
                        "sales_worklist.csv", "text/csv")
@@ -404,8 +404,10 @@ elif PAGE == "Sales worklist":
     st.subheader("Does the ranking actually work?")
     work["decile"] = pd.qcut(work["P(buys next month)"].rank(method="first", ascending=False),
                              10, labels=range(1, 11))
-    g = work.groupby("decile", observed=True).apply(
-        lambda d: (d["Actually bought"] == "yes").mean(), include_groups=False)
+    # column-wise mean rather than groupby.apply: the include_groups argument
+    # needed to silence apply's deprecation only exists on pandas >= 2.2
+    work["_hit"] = (work["Actually bought"] == "yes").astype(float)
+    g = work.groupby("decile", observed=True)["_hit"].mean()
     fig = go.Figure(go.Bar(
         x=[f"D{i}" for i in g.index], y=(g.to_numpy() * 100).round(1),
         marker=dict(color=viz.SERIES_1, cornerradius=4),
