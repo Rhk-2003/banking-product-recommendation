@@ -1,0 +1,25 @@
+product_code,product,acquisitions,ownership_rate
+ind_recibo_ult1,Direct Debit,10163,0.120564865544432
+ind_nom_pens_ult1,Pensions,5513,0.054680072475106915
+ind_nomina_ult1,Payroll,5488,0.04979911791017878
+ind_tjcr_fin_ult1,Credit Card,4248,0.03756165941663798
+ind_cco_fin_ult1,Current Account,3854,0.6062506002721594
+ind_ecue_fin_ult1,e-Account,2709,0.07955966732242466
+ind_cno_fin_ult1,Payroll Account,2346,0.07743375962998415
+ind_ctma_fin_ult1,Más Particular Account,512,0.009336727591368168
+ind_reca_fin_ult1,Taxes Account,279,0.0488332867504152
+ind_ctop_fin_ult1,Particular Account,226,0.10903640266202493
+ind_valo_fin_ult1,Securities,183,0.023077429443066143
+ind_ctpp_fin_ult1,Particular Plus Account,131,0.03612208537515796
+ind_fond_fin_ult1,Funds,60,0.01598747333172901
+ind_dela_fin_ult1,Long-Term Deposit,46,0.034917764063095214
+ind_ctju_fin_ult1,Junior Account,40,0.008206867005588871
+ind_plan_fin_ult1,Pension Plan,22,0.007947873175037742
+ind_viv_fin_ult1,Home Account,7,0.003196415525385172
+ind_pres_fin_ult1,Loan,7,0.0021442530887712144
+ind_cder_fin_ult1,Derivada Account,5,0.0003388502616377259
+ind_hip_fin_ult1,Mortgage,3,0.004903616525101359
+ind_ahor_fin_ult1,Savings Account,1,8.309385396848692e-05
+ind_aval_fin_ult1,Guarantees,0,1.7266255370075205e-05
+ind_deco_fin_ult1,Short-Term Deposit,0,0.00034748338932276353
+ind_deme_fin_ult1,Medium-Term Deposit,0,0.0011169108942517398

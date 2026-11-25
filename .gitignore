@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+# raw input + large regenerable intermediates
+data/train_ver2.csv
+data/test_ver2.csv
+data/*.zip
+data/last5m.parquet
+data/reco_train.parquet
+data/reco_valid.parquet

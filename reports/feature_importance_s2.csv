@@ -1,0 +1,26 @@
+feature,gain,pretty
+age,916778.3967713692,age
+antiguedad,754740.4954561297,antiguedad
+n_products,167742.64075578816,n_products
+n_products_lag,131880.36640663788,n_products_lag
+own_ind_recibo_ult1,114319.85124036032,Direct Debit (held)
+dropped_last_month,112486.08647525305,dropped_last_month
+renta,111945.84284345323,renta
+own_ind_cco_fin_ult1,75704.0123276891,Current Account (held)
+lag_ind_cno_fin_ult1,69965.436102523,"Payroll Account (held, prior month)"
+own_ind_cno_fin_ult1,65111.24329405526,Payroll Account (held)
+own_ind_nom_pens_ult1,54912.29721802391,Pensions (held)
+sexo,42917.77572699925,sexo
+lag_ind_cco_fin_ult1,41136.35693390429,"Current Account (held, prior month)"
+lag_ind_recibo_ult1,30250.998038009042,"Direct Debit (held, prior month)"
+lag_ind_tjcr_fin_ult1,26816.880561688144,"Credit Card (held, prior month)"
+lag_ind_ctma_fin_ult1,26057.47823864074,"Más Particular Account (held, prior month)"
+canal_entrada,25515.56225731969,canal_entrada
+own_ind_tjcr_fin_ult1,24823.274178770298,Credit Card (held)
+lag_ind_ecue_fin_ult1,21574.781902187962,"e-Account (held, prior month)"
+lag_ind_nom_pens_ult1,21270.39148851789,"Pensions (held, prior month)"
+ind_actividad_cliente,20649.831413764154,ind_actividad_cliente
+nomprov,20580.7159897238,nomprov
+own_ind_nomina_ult1,17370.31411051182,Payroll (held)
+own_ind_ctpp_fin_ult1,15242.725146132263,Particular Plus Account (held)
+added_last_month,14327.993082132778,added_last_month
